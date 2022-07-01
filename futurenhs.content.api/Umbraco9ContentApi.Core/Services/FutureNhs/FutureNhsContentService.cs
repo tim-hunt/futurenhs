@@ -2,6 +2,7 @@
 {
     using Interface;
     using Microsoft.Extensions.Logging;
+    using System.Globalization;
     using Umbraco.Cms.Core;
     using Umbraco.Cms.Core.Models;
     using Umbraco.Cms.Core.Models.PublishedContent;
@@ -127,7 +128,7 @@
         public void SaveContent(IContent content, CancellationToken cancellationToken)
         {
             // sets update date (umbraco save doesn't seem to do so)
-            content.UpdateDate = DateTime.UtcNow;
+            content.UpdateDate = DateTime.Parse(DateTime.Now.ToString("dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture));
             if (!_contentService.Save(content).Success)
                 throw new KeyNotFoundException($"Unable to save content {content.Key}. Content does not exist.");
         }

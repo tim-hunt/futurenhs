@@ -126,6 +126,8 @@
         /// <inheritdoc />
         public void SaveContent(IContent content, CancellationToken cancellationToken)
         {
+            // sets update date (umbraco save doesn't seem to do so)
+            content.UpdateDate = DateTime.UtcNow;
             if (!_contentService.Save(content).Success)
                 throw new KeyNotFoundException($"Unable to save content {content.Key}. Content does not exist.");
         }

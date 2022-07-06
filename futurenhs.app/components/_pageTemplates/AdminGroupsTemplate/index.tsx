@@ -36,7 +36,7 @@ export const AdminGroupsTemplate: (props: Props) => JSX.Element = ({
     const { secondaryHeading, noGroups, createGroup } = contentText ?? {}
 
     const hasUsers: boolean = true
-    const shouldEnableLoadMore: boolean = true
+    const shouldEnableLoadMore: boolean = false
     const shouldRenderCreateUserLink: boolean = actions.includes(
         actionConstants.SITE_ADMIN_MEMBERS_ADD
     )

@@ -401,7 +401,7 @@ export const GroupMemberListingTemplate: (props: Props) => JSX.Element = ({
                         />
                         <PaginationWithStatus
                             id="member-list-pagination"
-                            shouldEnableLoadMore={true}
+                            shouldEnableLoadMore={false}
                             getPageAction={handleGetPage}
                             {...dynamicPagination}
                         />

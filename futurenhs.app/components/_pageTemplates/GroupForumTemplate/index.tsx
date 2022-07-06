@@ -36,7 +36,7 @@ export const GroupForumTemplate: (props: Props) => JSX.Element = ({
     const [dynamicPagination, setPagination] = useState(pagination)
 
     const hasDiscussions: boolean = dynamicDiscussionsList.length > 0
-    const shouldEnableLoadMore: boolean = true
+    const shouldEnableLoadMore: boolean = false
     const shouldRenderCreateDiscussionLink: boolean = actions.includes(
         actionConstants.GROUPS_DISCUSSIONS_ADD
     )

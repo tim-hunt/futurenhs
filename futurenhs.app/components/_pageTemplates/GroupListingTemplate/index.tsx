@@ -29,7 +29,7 @@ export const GroupListingTemplate: (props: Props) => JSX.Element = ({
     const [dynamicGroupsList, setGroupsList] = useState(groupsList)
     const [dynamicPagination, setPagination] = useState(pagination)
 
-    const shouldEnableLoadMore: boolean = true
+    const shouldEnableLoadMore: boolean = false
 
     const {
         title,

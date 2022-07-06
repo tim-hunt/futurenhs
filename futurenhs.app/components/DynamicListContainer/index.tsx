@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react'
 import classNames from 'classnames'
-import isFocusable from 'ally.js/is/focusable'
 
 import { Props } from './interfaces'
 

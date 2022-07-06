@@ -45,7 +45,7 @@ export const DataGrid: (props: Props) => JSX.Element = ({
             </thead>
             <DynamicListContainer
                 containerElementType="tbody"
-                shouldEnableLoadMore={true}
+                shouldEnableLoadMore={false}
             >
                 {rowList.map((row, index) => {
                     return (

@@ -28,7 +28,7 @@ export const SearchListingTemplate: (props: Props) => JSX.Element = ({
 }) => {
     const resultsCount: number = resultsList.length
     const hasResults: boolean = resultsCount > 0
-    const shouldEnableLoadMore: boolean = true
+    const shouldEnableLoadMore: boolean = false
 
     const {
         metaDescription,

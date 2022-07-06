@@ -473,7 +473,7 @@ export const GroupFolderContentsTemplate: (props: Props) => JSX.Element = ({
                         />
                         <PaginationWithStatus
                             id="file-list-pagination"
-                            shouldEnableLoadMore={true}
+                            shouldEnableLoadMore={false}
                             getPageAction={handleGetPage}
                             {...dynamicPagination}
                         />

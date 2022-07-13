@@ -1,6 +1,6 @@
 import { requestMethods } from '@constants/fetch'
 import { cacheNames } from '@constants/caches'
-import { clearClientCaches } from '@helpers/util/data'
+import { clearClientCaches, getCsvStringFromObject } from '@helpers/util/data'
 import { FetchOptions, FetchResponse } from '@appTypes/fetch'
 
 /**
@@ -92,6 +92,18 @@ export const setFetchOpts = ({
         for (const key in headers) {
             headersToUse.set(key, headers[key])
         }
+    }
+
+    /**
+     * Inject the original browser cookies into the request for server -> server calls
+     */
+    if(typeof window === 'undefined' && global?.reqCookies){
+
+        headersToUse.set('Cookie', getCsvStringFromObject({
+            object: global.reqCookies,
+            seperator: '; ',
+        }))
+
     }
 
     const fetchOpts: FetchOptions = {

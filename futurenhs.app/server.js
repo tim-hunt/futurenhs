@@ -11,10 +11,46 @@ const url = require('url');
 const { join } = require('path');
 const csrf = require('csurf');
 const cookieParser = require('cookie-parser');
-const formData = require("express-form-data");
+const formData = require('express-form-data');
 const os = require('os');
 const { randomBytes } = require('crypto');
 const { AbortController } = require('node-abort-controller');
+
+/**
+ * Custom middleware to check for a current user
+ * Used to verify requests sent to the proxy endpoint destined for the vNext Web API
+ */
+const authCheck = ((req, res, next) => {
+
+    let isAuthenticated = false;
+
+    fetch(process.env.NEXT_PUBLIC_MVC_FORUM_REFRESH_TOKEN_URL, {
+        method: 'GET',
+        headers: new Headers({
+            Cookie: req.headers.cookie,
+        }),
+    })
+    .then((user) => {
+
+        if(user.ok){
+
+            isAuthenticated = true;
+            next();
+
+        }
+
+    })
+    .finally(() => {
+
+        if(!isAuthenticated){
+
+            res.redirect(process.env.NEXT_PUBLIC_MVC_FORUM_LOGIN_URL);
+    
+        }
+
+    })
+
+}) 
 
 /**
  * Generate Content Security Policy settings
@@ -33,7 +69,7 @@ const generateCSP = (nonce) => {
         'style-src': `'self' 'unsafe-inline'`,
         'script-src': `'self' 'unsafe-inline' https://js.monitor.azure.com/scripts/b/ai.2.min.js *.googletagmanager.com *.hotjar.com https://ws2.hotjar.com wss://ws2.hotjar.com/api/v2/client/ws wss://ws15.hotjar.com/api/v2/client/ws *.google-analytics.com https://cdn.eu.pendo.io https://data.eu.pendo.io`,
         'font-src': `'unsafe-inline' https://assets.nhs.uk`,
-        'connect-src': `'self' https://dc.services.visualstudio.com https://www.google-analytics.com *.hotjar.com https://ws2.hotjar.com wss://ws2.hotjar.com/api/v2/client/ws wss://ws15.hotjar.com/api/v2/client/ws *.googletagmanager.com https://assets.nhs.uk https://cdn.eu.pendo.io https://data.eu.pendo.io`,
+        'connect-src': `'self' https://dc.services.visualstudio.com https://www.google-analytics.com *.hotjar.com https://ws2.hotjar.com wss://ws2.hotjar.com/api/v2/client/ws wss://ws15.hotjar.com/api/v2/client/ws *.googletagmanager.com https://assets.nhs.uk https://cdn.eu.pendo.io https://data.eu.pendo.io ${process.env.NEXT_PUBLIC_MVC_FORUM_LOGIN_URL}`,
         'worker-src': `'self'`
     };
 
@@ -59,9 +95,9 @@ let server = undefined;
  * This gateway accepts front and back end calls from application services and injects the required auth header
  * before forwarding the request to the API and subsequently the response back to the service 
  */
-app.use('/api/gateway/*', proxy(() => process.env.NEXT_PUBLIC_API_BASE_URL.replace('/api', ''), {
+app.use('/api/gateway/*', authCheck, proxy(() => process.env.NEXT_PUBLIC_API_BASE_URL.replace('/api', ''), {
     memoizeHost: false,
-    limit: '250mb',
+    limit: process.env.NEXT_PUBLIC_FILE_UPLOAD_MAX_SIZE || '250mb',
     proxyReqPathResolver: (req) => '/api' + req.originalUrl.split(`gateway`)[1],
     proxyReqOptDecorator: (proxyReqOpts) => {
 
@@ -139,7 +175,15 @@ nextApp
                 'Content-Security-Policy': generateCSP(nonce)
             });
 
+            /**
+             * Pass nonce into locals for use in script tags e.g. GTM
+             */
             res.locals.nonce = nonce;
+
+            /**
+             * Make request cookies available to fetch for server -> server requests
+             */
+            global.reqCookies = req.cookies;
 
             next();
 

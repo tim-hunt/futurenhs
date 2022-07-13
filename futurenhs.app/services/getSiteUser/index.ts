@@ -8,7 +8,6 @@ import { ServiceError } from '..'
 import { FetchResponse } from '@appTypes/fetch'
 import { ApiResponse, ServiceResponse } from '@appTypes/service'
 import { User } from '@appTypes/user'
-import { GroupMember } from '@appTypes/group'
 import { Member } from '@appTypes/member'
 
 declare type Options = {

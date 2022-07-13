@@ -3,7 +3,9 @@
 namespace MvcForum.Web
 {
     using MvcForum.Core.Ioc;
+    using System.Configuration;
     using System.Web.Http;
+    using System.Web.Http.Cors;
     using Unity;
 
     public static class WebApiConfig
@@ -15,9 +17,16 @@ namespace MvcForum.Web
             //config.SuppressDefaultHostAuthentication();
             //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
+
+
             // Web API routes
             config.MapHttpAttributeRoutes();
-            
+
+            if (ConfigurationManager.AppSettings["AzurePlatform:ApplicationGateway:FQDN"] == "http://localhost:8888/")
+            {
+                var cors = new EnableCorsAttribute("localhost:5000", "*", "*");
+                config.EnableCors(cors);
+            }
 
             config.Routes.MapHttpRoute(
                 "DefaultApi",

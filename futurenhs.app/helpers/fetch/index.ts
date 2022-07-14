@@ -95,7 +95,7 @@ export const setFetchOpts = ({
     }
 
     /**
-     * Inject the original browser cookies into the request for server -> server calls
+     * Inject the original browser cookies into the request for server -> server
      */
     if(typeof window === 'undefined' && global?.reqCookies){
 

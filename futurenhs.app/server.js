@@ -44,7 +44,7 @@ const authCheck = ((req, res, next) => {
 
         if(!isAuthenticated){
 
-            res.redirect(process.env.NEXT_PUBLIC_MVC_FORUM_LOGIN_URL);
+            res.redirect('/log-out');
     
         }
 

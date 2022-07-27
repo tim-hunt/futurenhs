@@ -9,9 +9,11 @@ const msbuild = (done) => {
 
     process.env.PATH = `${process.env.PATH};C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin`;
 
-    const proc = childProcess.spawn('msbuild.exe', [
-        'FutureNHS.Data\\FutureNHS.Data.sln',
-        '-t:rebuild'
+    const proc = childProcess.spawn('dotnet', [
+        'build',
+        'futurenhs.data\\FutureNHS.Data.FutureNHS\\FutureNHS.Data.FutureNHS.sqlproj',
+        '/p:NetCoreBuild=true',
+        '/p:SystemDacpacsLocation="futurenhs.data\\ExperimentalBuildTools"'
     ], {
         cwd: process.cwd()
     });

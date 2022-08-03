@@ -91,9 +91,6 @@
     </SqlCmdVariable>
   </ItemGroup>
   <Target Name="AfterClean">
-    <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
-  </Target>
-  <Target Name="BeforeBuild">
-    <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
+    <Delete Files="Publish.sql" />
   </Target>
 </Project>

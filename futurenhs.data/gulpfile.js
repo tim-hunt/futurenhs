@@ -11,7 +11,7 @@ const clean = (done) => {
 
     const proc = childProcess.spawn('dotnet', [
         'clean',
-        'FutureNHS.Data\\FutureNHS.Data.FutureNHS\\FutureNHS.Data.FutureNHS.sqlproj',
+        'futurenhs.data\\FutureNHS.Data.FutureNHS\\FutureNHS.Data.FutureNHS.sqlproj',
         '/p:NetCoreBuild=true',
         '/p:SystemDacpacsLocation="FutureNHS.Data\\ExperimentalBuildTools"'
     ], {
@@ -52,7 +52,7 @@ const dotnetBuild = (done) => {
 
     const proc = childProcess.spawn('dotnet', [
         'build',
-        'FutureNHS.Data\\FutureNHS.Data.FutureNHS\\FutureNHS.Data.FutureNHS.sqlproj',
+        'futurenhs.data\\FutureNHS.Data.FutureNHS\\FutureNHS.Data.FutureNHS.sqlproj',
         '/p:NetCoreBuild=true',
         '/p:SystemDacpacsLocation="FutureNHS.Data\\ExperimentalBuildTools"'
     ], {
@@ -95,7 +95,7 @@ const deployFutureNHSDatabase = (done) => {
     
     const sqlPackage = childProcess.spawn('sqlpackage', [
         '/Action:Publish',
-        `/SourceFile:FutureNHS.Data/FutureNHS.Data.FutureNHS/bin/Debug/FutureNHS.Data.FutureNHS.dacpac`,
+        `/SourceFile:futurenhs.data/FutureNHS.Data.FutureNHS/bin/Debug/FutureNHS.Data.FutureNHS.dacpac`,
         '/TargetDatabaseName:FutureNHS',
         '/TargetServerName:localhost',
         '/TargetUser:sa',
@@ -127,7 +127,7 @@ const deployAutomationFutureNHSDatabase = (done) => {
     var sqlPackage = childProcess.spawn('sqlpackage', [
         '/Action:Publish',
 	'/Diagnostics:True',
-        '/SourceFile:FutureNHS.Data/FutureNHS.Data.FutureNHS/bin/Debug/FutureNHS.Data.FutureNHS.dacpac',
+        '/SourceFile:futurenhs.data/FutureNHS.Data.FutureNHS/bin/Debug/FutureNHS.Data.FutureNHS.dacpac',
         '/TargetDatabaseName:FutureNHS',
         '/TargetServerName:localhost',
         '/TargetUser:sa',

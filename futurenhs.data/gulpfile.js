@@ -99,10 +99,10 @@ const deployFutureNHSDatabase = (done) => {
         '/TargetDatabaseName:FutureNHS',
         '/TargetServerName:localhost',
         '/TargetUser:sa',
-        '/TargetPassword:xFQF$a9I78uY',
-        `/DeployReportPath:FutureNHS.Data/FutureNHS.Data.FutureNHS/Report.xml`,
-        `/DeployScriptPath:FutureNHS.Data/FutureNHS.Data.FutureNHS/Publish.sql`,
-        `/Profile:FutureNHS.Data/FutureNHS.Data.FutureNHS/FutureNHS.Data.FutureNHS.publish.xml`,
+        '/TargetPassword:9um#Qu&6d3t5',
+        `/DeployReportPath:futurenhs.data/FutureNHS.Data.FutureNHS/Report.xml`,
+        `/DeployScriptPath:futurenhs.data/FutureNHS.Data.FutureNHS/Publish.sql`,
+        `/Profile:futurenhs.data/FutureNHS.Data.FutureNHS/FutureNHS.Data.FutureNHS.publish.xml`,
     ], {
         cwd: process.cwd(), 
       
@@ -131,10 +131,10 @@ const deployAutomationFutureNHSDatabase = (done) => {
         '/TargetDatabaseName:FutureNHS',
         '/TargetServerName:localhost',
         '/TargetUser:sa',
-        '/TargetPassword:xFQF$a9I78uY',
-        '/DeployReportPath:FutureNHS.Data/FutureNHS.Data.FutureNHS/Report.xml',
-        '/DeployScriptPath:FutureNHS.Data/FutureNHS.Data.FutureNHS/Publish.sql',
-        '/Profile:FutureNHS.Data/FutureNHS.Data.FutureNHS/FutureNHS.Data.FutureNHS-automated.publish.xml',
+        '/TargetPassword:9um#Qu&6d3t5',
+        '/DeployReportPath:futurenhs.data/FutureNHS.Data.FutureNHS/Report.xml',
+        '/DeployScriptPath:futurenhs.data/FutureNHS.Data.FutureNHS/Publish.sql',
+        '/Profile:futurenhs.data/FutureNHS.Data.FutureNHS/FutureNHS.Data.FutureNHS-automated.publish.xml',
     ], {
         cwd: process.cwd()
     });
@@ -158,7 +158,7 @@ const dropFutureNHSDatabase = (done) => {
         '-U',
         'sa',
         '-P',
-        'xFQF$a9I78uY',
+        '9um#Qu&6d3t5',
         '-Q',
         'DROP DATABASE FutureNHS',
     ], {

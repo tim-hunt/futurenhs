@@ -95,14 +95,14 @@ const deployFutureNHSContentDatabase = (done) => {
 
     var sqlPackage = childProcess.spawn('sqlpackage', [
         '/Action:Publish',
-        '/SourceFile:./FutureNHS.Content.Data/FutureNHS.Content.Data/bin/Debug/FutureNHS.Content.Data.dacpac',
+        '/SourceFile:futurenhs.content.data/FutureNHS.Content.Data/bin/Debug/FutureNHS.Content.Data.dacpac',
         '/TargetDatabaseName:futurenhscontentapi',
         '/TargetServerName:localhost',
         '/TargetUser:sa',
-        '/TargetPassword:xFQF$a9I78uY',
-        '/DeployReportPath:./FutureNHS.Content.Data/FutureNHS.Content.Data/Report.xml',
-        '/DeployScriptPath:./FutureNHS.Content.Data/FutureNHS.Content.Data/Publish.sql',
-        '/Profile:./FutureNHS.Content.Data/FutureNHS.Content.Data/FutureNHS.Content.Data.publish.xml',
+        '/TargetPassword:9um#Qu&6d3t5',
+        '/DeployReportPath:futurenhs.content.data/FutureNHS.Content.Data/Report.xml',
+        '/DeployScriptPath:futurenhs.content.data/FutureNHS.Content.Data/Publish.sql',
+        '/Profile:futurenhs.content.data/FutureNHS.Content.Data/FutureNHS.Content.Data.publish.xml',
     ], {
         cwd: process.cwd()
     });
@@ -121,18 +121,18 @@ const deployFutureNHSContentDatabase = (done) => {
 };
 
 const deployAutomationFutureNHSContentDatabase = (done) => {
-    process.env.PATH = `${process.env.PATH};C:\\Program Files\\Microsoft SQL Server\\160\\DAC\\bin`;
+    process.env.PATH = `${process.env.PATH}`;
 
     var sqlPackage = childProcess.spawn('sqlpackage', [
         '/Action:Publish',
-        '/SourceFile:./FutureNHS.Content.Data/FutureNHS.Content.Data/bin/Debug/FutureNHS.Content.Data.dacpac',
+        '/SourceFile:futurenhs.content.data/FutureNHS.Content.Data/bin/Debug/FutureNHS.Content.Data.dacpac',
         '/TargetDatabaseName:futurenhscontentapi',
         '/TargetServerName:localhost',
         '/TargetUser:sa',
-        '/TargetPassword:xFQF$a9I78uY',
-        '/DeployReportPath:./FutureNHS.Content.Data/FutureNHS.Content.Data/Report.xml',
-        '/DeployScriptPath:./FutureNHS.Content.Data/FutureNHS.Content.Data/Publish.sql',
-        '/Profile:./FutureNHS.Content.Data/FutureNHS.Content.Data/FutureNHS.Content.Data.publish.xml',
+        '/TargetPassword:9um#Qu&6d3t5',
+        '/DeployReportPath:futurenhs.content.data/FutureNHS.Content.Data/Report.xml',
+        '/DeployScriptPath:futurenhs.content.data/FutureNHS.Content.Data/Publish.sql',
+        '/Profile:futurenhs.content.data/FutureNHS.Content.Data/FutureNHS.Content.Data.publish.xml',
     ], {
         cwd: process.cwd()
     });
@@ -156,7 +156,7 @@ const dropFutureNHSContentDatabase = (done) => {
         '-U',
         'sa',
         '-P',
-        'xFQF$a9I78uY',
+        '9um#Qu&6d3t5',
         '-Q',
         'DROP DATABASE futurenhscontentapi',
     ], {

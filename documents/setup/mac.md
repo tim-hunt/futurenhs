@@ -5,7 +5,9 @@ Load terminal and run the following commands
 
 ## Install homebrew
 [Brew instructions](https://brew.sh/)
-
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 ❗️Restart terminal
 
 ## Uninstall Node (If you don’t already have NVM installed)

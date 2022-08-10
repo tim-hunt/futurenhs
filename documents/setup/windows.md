@@ -1,5 +1,5 @@
 
-# Linux Setup - FutureNHS
+# Windows Setup - FutureNHS
 
 Load terminal and run the following commands
 
@@ -53,12 +53,12 @@ npm install --global gulp-cli
 ## Install MSSQL
 
 ```
-sudo docker pull mcr.microsoft.com/azure-sql-edge
-
-sudo docker run --cap-add SYS_PTRACE -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=<STRONGPASSWORDHERE>' -p 1433:1433 --name sqledge -d mcr.microsoft.com/azure-sql-edge
+sudo docker pull mcr.microsoft.com/mssql/server:2022-latest
+sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=9um#Qu&6d3t5" -p 1433:1433 --name sql1 --hostname sql1  -d mcr.microsoft.com/mssql/server:2022-latest
 ```
 
 ## Install Azure data studio
+
 [Azure data studio setup instructions](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver16)
 
 ## Install SQL Package
@@ -156,7 +156,7 @@ cd ..
 gulp activate
 ```
 
-# Config Secrets
+#Config Secrets
 
 ## Api Secrets:
 ```

@@ -1,22 +1,13 @@
 
-# Linux Setup - FutureNHS
+# Mac OS - FutureNHS
 
 Load terminal and run the following commands
-
-```
-Sudo apt-get install git
-```
 
 ## Install homebrew
 [Brew instructions](https://brew.sh/)
 
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-```
-
 ❗️Restart terminal
+
 ## Uninstall Node (If you don’t already have NVM installed)
 
 ```
@@ -26,7 +17,7 @@ brew uninstall node
 ## Install NVM
 
 ```
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh |  shellenv
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 ```
 ❗️Restart terminal
 
@@ -40,17 +31,24 @@ nvm alias default v14.18.3
 
 ## Install Docker
 
-[Docker setup instructions](https://docs.docker.com/desktop/install/linux-install/)
+[Docker setup instructions](https://docs.docker.com/desktop/install/mac-install/)
+
+## Install Git
+[Git setup instructions](https://git-scm.com/download/mac)
+
+```
+brew install git
+```
 
 ## Install gulp
-
 [Gulp setup instructions](https://gulpjs.com/docs/en/)
 
 ```
 npm install --global gulp-cli
 ```
 
-## Install MSSQL
+## Install MSSql
+[MSSql setup instructions](https://database.guide/how-to-install-sql-server-on-an-m1-mac-arm64/)
 
 ```
 sudo docker pull mcr.microsoft.com/azure-sql-edge
@@ -59,41 +57,27 @@ sudo docker run --cap-add SYS_PTRACE -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=<S
 ```
 
 ## Install Azure data studio
-[Azure data studio setup instructions](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver16)
+
+[Azure data studio setup instructions](https://database.guide/how-to-install-azure-data-studio-on-a-mac/)
 
 ## Install SQL Package
 [SQL Package instructions](https://docs.microsoft.com/en-us/sql/tools/sqlpackage/sqlpackage-download?view=sql-server-ver16)
 
-❗️Sql Package uses an old version of libssl so need to install the old one.
-```
-wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb 
-wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.1.1f-1ubuntu2.16_amd64.deb 
-
-sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb 
-sudo dpkg -i openssl_1.1.1f-1ubuntu2.16_amd64.deb
-```
 
 slight tweak required to path as does not work in gulp, only terminal, when following the instructions from microsoft
 ```
 mkdir sqlpackage
-unzip ~/Downloads/sqlpackage-linux-x64-en-<Version>.zip -d ~/sqlpackage 
-chmod a+x ~/sqlpackage/sqlpackage
-echo 'export PATH="$HOME/sqlpackage:$PATH"' >> ~/.bash_profile
+unzip ~/Downloads/sqlpackage-osx-<version string>.zip -d /usr/local/share/sqlpackage
+chmod +x /usr/local/share/sqlpackage
+echo 'export PATH="/usr/local/share/sqlpackage:$PATH"' >> ~/.bash_profile
 source ~/.bash_profile
 sqlpackage
 ```
 
 ## Install .net 6
-```
-wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
-```
+[.net 6 instructions](https://docs.microsoft.com/en-us/dotnet/core/install/macos)
 
-### Install the SDK
-```
-sudo apt-get update && \ sudo apt-get install -y dotnet-sdk-6.0
-```
+For M1 chips select Arm64 version otherwise pick x64
 
 ## Git Clone Repo
 cd to location you want to pull code down to, eg cd Documents/Source
@@ -103,26 +87,48 @@ cd futurenhs
 git reset --hard origin/SPRINT
 ```
 
-## Install npm packages
+## Ensure python is in the env path
 ```
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+brew install pyenv
 
+pyenv install 3.10.3
+
+pyenv global 3.10.3
+
+echo "export PATH=\"\${HOME}/.pyenv/shims:\${PATH}\"" >> ~/.bash_profile
+```
+### open a new terminal window and confirm your pyenv version is mapped to python
+```
+which python
+
+python --version
+```
+
+## M1 Chip issues
+Some issues were found running on m1 chip, following the guidance [here](https://github.com/nuxt/image/issues/204) to fix them 
+
+###Install gcc
+The "libvps" depends on gcc, so do:
+```
+brew install --build-from-source gcc
+```
+Install XCode Build Tools CLI
+Also required by "libvps"
+```
+xcode-select install
+```
+
+###Install "vips"
+```
 brew install vips
 ```
 
-### Install yarn
-```
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt update
-sudo apt install yarn
-```
 
 ### Pull down packages for root and web app
 ```
-yarn
+npm i
 cd futurenhs.app
-yarn
+npm i
 ```
 
 ## Config 
@@ -156,7 +162,7 @@ cd ..
 gulp activate
 ```
 
-# Config Secrets
+#Config Secrets
 
 ## Api Secrets:
 ```
@@ -202,7 +208,7 @@ gulp activate
 ## Umbraco Api Secrets
 ```
 {
-  "APPINSIGHTS_CONNECTIONSTRING": "InstrumentationKey=keyhere",
+  "APPINSIGHTS_CONNECTIONSTRING": "<keyhere>",
 
   "ConnectionStrings:umbracoDbDSN": "SqlConnectionStringHere>",
 

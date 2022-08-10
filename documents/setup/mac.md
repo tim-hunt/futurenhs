@@ -109,7 +109,7 @@ python --version
 ## M1 Chip issues
 Some issues were found running on m1 chip, following the guidance [here](https://github.com/nuxt/image/issues/204) to fix them 
 
-###Install gcc
+### Install gcc
 The "libvps" depends on gcc, so do:
 ```
 brew install --build-from-source gcc
@@ -120,7 +120,7 @@ Also required by "libvps"
 xcode-select install
 ```
 
-###Install "vips"
+### Install "vips"
 ```
 brew install vips
 ```
@@ -164,7 +164,7 @@ cd ..
 gulp activate
 ```
 
-#Config Secrets
+# Config Secrets
 
 ## Api Secrets:
 ```

@@ -126,7 +126,7 @@ brew install vips
 ```
 
 
-### Pull down packages for root and web app
+## Pull down packages for root and web app
 ```
 npm i
 cd futurenhs.app

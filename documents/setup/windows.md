@@ -36,16 +36,16 @@ In addition to this also add it to your path in the windows environment variable
 
 **To add a directory to the existing PATH in Windows**
 
-[^1]Launch "Control Panel"
-[^2]"System"
-[^3]"Advanced system settings"
-[^4]Switch to "Advanced" tab
-[^5]"Environment variables"
-[^6]Under "System Variables" (for all users), select "Path"
-[^7]"Edit"
-[^8]"New"
-[^9] Enter - C:\Program Files\Microsoft SQL Server\160\DAC\bin
-[^10]"Ok"
+1. Launch "Control Panel"
+2. "System"
+3. "Advanced system settings"
+4. Switch to "Advanced" tab
+5. "Environment variables"
+6. Under "System Variables" (for all users), select "Path"
+7. "Edit"
+8. "New"
+9. C:\Program Files\Microsoft SQL Server\160\DAC\bin
+10. "Ok"
 
 ## Install .Net 6.0 sdk
 [.Net 6 setup instructions](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)

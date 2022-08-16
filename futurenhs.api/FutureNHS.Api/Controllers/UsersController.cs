@@ -105,14 +105,14 @@ namespace FutureNHS.Api.Controllers
 
         [HttpPost]
         [Route("users/register")]
-        public async Task<IActionResult> RegisterMemberAsync([FromBody] MemberRegistrationRequest memberRegistrationRequest, CancellationToken cancellationToken)
+        public async Task<IActionResult> RegisterMemberAsync(CancellationToken cancellationToken)
         {
             if (Request.ContentType != null && !MultipartRequestHelper.IsMultipartContentType(Request.ContentType))
             {
                 return BadRequest("The data submitted is not in the multiform format");
             }
 
-            var resp = memberRegistrationRequest;
+            //var resp = memberRegistrationRequest;
 
             var rowVersion = _etagService.GetIfMatch();
 

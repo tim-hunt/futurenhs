@@ -49,7 +49,7 @@ export const withUser = (
                     const { status } = user
 
                     if (status === 'LegacyMember' || status === 'Invited') {
-                        const targetPath: string = `/users/${user.id}/create`
+                        const targetPath: string = `/auth/register`
 
                         if (context.resolvedUrl !== targetPath) {
                             return {

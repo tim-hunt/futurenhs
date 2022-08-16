@@ -62,6 +62,8 @@ const activateNoApp = series(activateAutomationDb, activateContentDb, activateAp
 
 const activateNoApi = series(activateAutomationDb, activateContentDb, activateApp, activateContentApi);
 
+const activateNoApiApp = series(activateAutomationDb, activateContentDb, activateContentApi);
+
 const activateNoUmbraco = series(activateAutomationDb, activateContentDb, activateApi, activateApp);
 
 const activateNoUmbracoNoApi = series(activateAutomationDb, activateContentDb, activateApp);
@@ -76,6 +78,7 @@ module.exports = {
     activateNoApi,
     activateNoUmbraco,
     activateApi,
+    activateNoApiApp,
     activateContentApi,
     activateNoUmbracoNoApi,
     activateDb,
